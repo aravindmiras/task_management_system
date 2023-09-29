@@ -1,0 +1,31 @@
+---
+import DeleteProject from '../Components/DeleteProject.jsx';
+const{name, script, domain, deadline,pic, theme,id,username}=Astro.props;
+---
+
+<div
+    class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+    <div class="rounded-t-lg h-32 overflow-hidden">
+        <img class="object-cover object-top w-full" src={`${theme}`} alt=''>
+    </div>
+    <a href=`/post/TasksDash/${id}`>
+    <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+        <img class="object-cover object-center h-32" src={`${pic}`} alt={`${name}`}>
+    </div>
+    </a>
+    <div class="text-center mt-2">
+        <h2 class="font-semibold">{name}</h2>
+        <p class="text-gray-500">{script}</p>
+        <p class="text-gray-500"><b>Domain: </b> {domain}</p>
+        <p class="text-gray-500"><b>Deadline: </b> {deadline}</p>
+    </div>
+    <div class="text-center mt-2">
+        
+    </div>
+    <div class="p-4 border-t mx-8 mt-2">
+        <a href=`/post/EditProjects/${id}`>
+        <button class="w-1/2 block mx-auto rounded-full bg-[#ea580c] hover:scale-110 duration-200 font-semibold text-white px-6 py-2">Update</button>
+    </a>
+    <DeleteProject projectid={id} username={username} client:load/>
+    </div>
+</div>

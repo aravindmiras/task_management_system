@@ -1,0 +1,50 @@
+---
+import UpdateProject from '../../../Components/UpdateProject.jsx'
+const {slug}=Astro.params;
+
+export async function getStaticPaths() {
+  
+  let data = await fetch("http://localhost:8081/getallprojects");
+  let posts = await data.json();
+
+  return posts.map((post) => ({
+    params: { slug: post.projectid, },
+   
+  }));
+}
+
+let data=await fetch(`http://localhost:8081/getprojectbyprojectid/${slug}`)
+let fet=await data.json();
+
+let userdat=await fetch(`http://localhost:8081/getuserbyuserid/${fet.userid}`)
+let fetuser=await userdat.json();
+
+---
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+  setTimeout(function(){
+      var replacers = document.querySelectorAll('[data-replace]');
+      for(var i=0; i<replacers.length; i++){
+          console.log('hit here2');
+          let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
+          Object.keys(replaceClasses).forEach(function(key) {
+              replacers[i].classList.remove(key);
+              replacers[i].classList.add(replaceClasses[key]);
+          });
+      }
+  }, 1);
+});
+</script>
+
+<html>
+    <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8 duration-700 relative transform opacity-0 transition-all translate-y-12 ease-out"  data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <img class="mx-auto h-16 w-auto" src="/bonda1.png" alt="Bondamani" />
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Edit Your Project, {fet.projectname}</h2>
+            <p class="mt-2 text-center text-sm text-gray-600 max-w">
+              Already added? Go to
+              <a href=`/post/ProjectsDashboard/${fetuser.username}` class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">Projects Dashboard</a>
+            </p>
+          </div>
+          <UpdateProject userid={fet.userid} projectname={fet.projectname} desci={fet.desci} domain={fet.domain} target={fet.target} logo={fet.logo} projectid={fet.projectid} deadline={fet.deadline} username={fetuser.username} client:load/>
+</html>

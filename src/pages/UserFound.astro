@@ -1,0 +1,37 @@
+---
+import UsersCard from "../Components/UsersCard.astro";
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png+xml" href="/bonda1.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Welcome To BeeEm'</title>
+		<script src="https://unpkg.com/split-type"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+		setTimeout(function(){
+			var replacers = document.querySelectorAll('[data-replace]');
+			for(var i=0; i<replacers.length; i++){
+				console.log('hit here2');
+				let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
+				Object.keys(replaceClasses).forEach(function(key) {
+					replacers[i].classList.remove(key);
+					replacers[i].classList.add(replaceClasses[key]);
+				});
+			}
+		}, 1);
+	});
+	</script>
+	</head>
+	<body>
+		<section class="bg-gray-50 min-h-screen flex items-center justify-center duration-700 relative transform opacity-0 transition-all translate-y-12 ease-out"  data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
+			<div class="grid grid-cols-1 gap-6">
+			<UsersCard name="Aravind Miras" role="Design Engineer" bio="Finding answer till saturation" projects="Gandiva, Av10" pic="https://yt3.googleusercontent.com/9yQNGfRWNAJ1MKgJ8jtLSmbQ2j5FHOeUxBuCJpLyO8yELpI0tWqMzJeeq_yfY-HDaJhvx_VBtg=s900-c-k-c0x00ffffff-no-rj" theme="https://media.licdn.com/dms/image/D5616AQGjg_WpEe3GUA/profile-displaybackgroundimage-shrink_200_800/0/1671032940478?e=2147483647&v=beta&t=6GYL8f16n1URbCN6LR-HV6q8BGNLGTxP2xhdlCNMw8g" />
+			<UsersCard name="Aravind Miras" role="Design Engineer" bio="Finding answer till saturation" projects="Gandiva, Av10" pic="https://yt3.googleusercontent.com/9yQNGfRWNAJ1MKgJ8jtLSmbQ2j5FHOeUxBuCJpLyO8yELpI0tWqMzJeeq_yfY-HDaJhvx_VBtg=s900-c-k-c0x00ffffff-no-rj" theme="https://media.licdn.com/dms/image/D5616AQGjg_WpEe3GUA/profile-displaybackgroundimage-shrink_200_800/0/1671032940478?e=2147483647&v=beta&t=6GYL8f16n1URbCN6LR-HV6q8BGNLGTxP2xhdlCNMw8g" />
+			</div>
+		</section>
+		
+	</body>
+</html>

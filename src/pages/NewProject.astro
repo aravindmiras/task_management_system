@@ -1,0 +1,16 @@
+---
+import NewProject1 from "../Components/NewProject1";
+---
+<html>
+<div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <img class="mx-auto h-16 w-auto" src="/bonda1.png" alt="Bondamani" />
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Your Projects</h2>
+        <p class="mt-2 text-center text-sm text-gray-600 max-w">
+          Already added? Go to
+          <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">Projects Dashboard</a>
+        </p>
+      </div>
+<NewProject1 userid="{post.userid}" client:load/>
+</div>
+</html>
